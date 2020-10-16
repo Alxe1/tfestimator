@@ -14,6 +14,11 @@ flags.DEFINE_string("server", "localhost:8500", "PredictionService host:port")
 
 
 def serving(input_data):
+    """
+    用于tensorflow serving
+    :param input_data: 输入数据，numpy array or list
+    :return:
+    """
     channel = grpc.insecure_channel(FLAGS.server)
     stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
     request = predict_pb2.PredictRequest()
